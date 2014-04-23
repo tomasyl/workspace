@@ -5,6 +5,8 @@ import java.util.List;
 public interface IBaseDao<M extends java.io.Serializable, PK extends java.io.Serializable> {
     
     public PK save(M model);
+    
+    //
 
     public void saveOrUpdate(M model);
     
