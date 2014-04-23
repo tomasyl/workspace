@@ -36,7 +36,7 @@
 
 	<filter>
 		<filter-name>BackURLFilter</filter-name>
-		<filter-class>cn.javass.common.web.filter.BackURLFilter</filter-class>
+		<filter-class>com.lx.common.web.filter.BackURLFilter</filter-class>
 	</filter>
 
 	<filter-mapping>

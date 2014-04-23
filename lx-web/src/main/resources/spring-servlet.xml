@@ -30,17 +30,17 @@
      
 
     <!-- 开启controller注解支持 -->
-    <!-- 注：如果base-package=cn.javass 则注解事务不起作用 TODO 读源码 -->
-    <context:component-scan base-package="cn.javass.demo.web.controller">
+    <!-- 注：如果base-package=com.lx 则注解事务不起作用 TODO 读源码 -->
+    <context:component-scan base-package="com.lx.demo.web.controller">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
 
 <!--  <mvc:interceptors>-->
-<!--        <bean class="cn.javass.test.interceptor.TestInterceptor"/>-->
+<!--        <bean class="com.lx.test.interceptor.TestInterceptor"/>-->
 <!--        <mvc:interceptor>-->
 <!--            <mvc:mapping path="/edit.kz"/>-->
-<!--            <bean class="cn.javass.test.interceptor.TestInterceptor"/>-->
+<!--            <bean class="com.lx.test.interceptor.TestInterceptor"/>-->
 <!--        </mvc:interceptor>-->
 <!--    </mvc:interceptors>-->
 
