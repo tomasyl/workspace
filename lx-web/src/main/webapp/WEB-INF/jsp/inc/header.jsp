@@ -1,4 +1,4 @@
-<%@page import="cn.javass.common.Constants"%>
+<%@page import="com.lx.common.Constants"%>
 <%
 	request.setAttribute("ctx", request.getContextPath());
 %>
