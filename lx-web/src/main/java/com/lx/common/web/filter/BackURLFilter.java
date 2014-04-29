@@ -8,11 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-/**
- * User: Zhang Kaitao
- * Date: 12-1-2 下午5:06
- * Version: 1.0
- */
+
 public class BackURLFilter implements Filter{
 
     

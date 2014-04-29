@@ -8,7 +8,7 @@
       overflowToDisk="false">
     </defaultCache>
 
-   <cache name="com.lx.demo.model.UserModel"
+   <cache name="com.lx.web.model.User"
       maxElementsInMemory="2000"
       eternal="false"
       timeToIdleSeconds="3600"

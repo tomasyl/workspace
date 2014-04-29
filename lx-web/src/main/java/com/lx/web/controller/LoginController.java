@@ -36,8 +36,6 @@ public class LoginController {
 			return "";
 		}
 		
-		
-		
 		HttpSession session = request.getSession();
 		session.setAttribute("login", true);
 		System.out.println(model);
@@ -47,4 +45,16 @@ public class LoginController {
 	private void setCommonData(Model model) {
 		// 设置通用属性
 	}
+	
+	@RequestMapping(value = "/accessDenied", method = { RequestMethod.GET })
+	public String accessDenied(){
+		return "accessDenied";
+	}
+	
+	/*@RequestMapping(value = "/logout", method = { RequestMethod.GET })
+	public String logout(HttpServletRequest request){
+		HttpSession session = request.getSession();
+		session.invalidate();
+		return "index";
+	}*/
 }

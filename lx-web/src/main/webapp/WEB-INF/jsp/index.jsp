@@ -7,5 +7,8 @@
 </head>
 <body>
 <a href="<c:url value='/user'/>">用户列表</a>
+<a href="<c:url value='/message'/>">message</a>
+
+<a href="<c:url value='/j_spring_security_logout'/>">message</a>
 </body>
 </html>

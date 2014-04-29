@@ -15,13 +15,8 @@ import com.lx.web.model.User;
 import com.lx.web.model.UserQueryModel;
 import com.lx.web.service.UserService;
 
-/**
- * User: Zhang Kaitao
- * Date: 12-1-4 上午11:06
- * Version: 1.0
- */
 
-@Service("UserService")
+@Service("userService")
 public class UserServiceImpl extends BaseService<User, Integer> implements UserService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
@@ -29,7 +24,7 @@ public class UserServiceImpl extends BaseService<User, Integer> implements UserS
     private UserDao userDao;
 
     @Autowired
-    @Qualifier("UserDao")
+    @Qualifier("userDao")
     @Override
     public void setBaseDao(IBaseDao<User, Integer> userDao) {
         this.baseDao = userDao;

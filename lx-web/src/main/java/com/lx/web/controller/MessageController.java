@@ -21,54 +21,53 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.lx.common.Constants;
 import com.lx.common.pagination.Page;
 import com.lx.common.web.support.editor.DateEditor;
-import com.lx.web.model.User;
-import com.lx.web.model.UserQueryModel;
-import com.lx.web.service.UserService;
+import com.lx.web.model.Messages;
+import com.lx.web.service.MessageService;
 
 
 @Controller
-public class UserController {
+public class MessageController {
 
     @Autowired
-    @Qualifier("userService")
-    private UserService userService;
+    @Qualifier("messageService")
+    private MessageService messageService;
     
 
-    @RequestMapping(value = "/user", method = {RequestMethod.GET})
+    @RequestMapping(value = "/message", method = {RequestMethod.GET})
     public String list(HttpServletRequest request, Model model) {
 
         setCommonData(model);
-        model.addAttribute(Constants.COMMAND, new User());
+        model.addAttribute(Constants.COMMAND, new Messages());
 
         int pn = ServletRequestUtils.getIntParameter(request, "pn", 1);
         Integer id = ServletRequestUtils.getIntParameter(request, "id", -1);
         boolean pre = ServletRequestUtils.getBooleanParameter(request, "pre", false);
-        Page<User> page = null;
+        Page<Messages> page = null;
         if(id > 0) {
             if(pre) {
-                page = userService.pre(id, pn);
+                page = messageService.pre(id.longValue(), pn);
             }
             else {
-                page = userService.next(id, pn);
+                page = messageService.next(id.longValue(), pn);
             }
         } 
         else {
-            page = userService.listAll(pn);
+            page = messageService.listAll(pn);
         }
         request.setAttribute("page", page);
-        return "user/list";
+        return "message/list";
     }
 
 
 
-    @RequestMapping(value = "/user/query", method = {RequestMethod.GET})
-    public String query(HttpServletRequest request, Model model, @ModelAttribute("command") UserQueryModel command) {
+    @RequestMapping(value = "/message/query", method = {RequestMethod.GET})
+    public String query(HttpServletRequest request, Model model, @ModelAttribute("command") Messages command) {
         setCommonData(model);
         model.addAttribute(Constants.COMMAND, command);
         int pn = ServletRequestUtils.getIntParameter(request, "pn", 1);
-        model.addAttribute("page", userService.query(pn, Constants.DEFAULT_PAGE_SIZE, command));
+        model.addAttribute("page", messageService.query(pn, Constants.DEFAULT_PAGE_SIZE, command));
 
-        return "user/list";
+        return "message/list";
     }
 
 
@@ -76,71 +75,71 @@ public class UserController {
         //设置通用属性
     }
 
-    @RequestMapping(value="/user/{userId}/view", method = {RequestMethod.GET})
-    public String view(@PathVariable Integer topicId, HttpServletRequest request) {
-        request.setAttribute(Constants.COMMAND, userService.get(topicId));
-        return "user/view";
+    @RequestMapping(value="/message/{messageId}/view", method = {RequestMethod.GET})
+    public String view(@PathVariable Long topicId, HttpServletRequest request) {
+        request.setAttribute(Constants.COMMAND, messageService.get(topicId));
+        return "message/view";
     }
 
 
 
     
-    @RequestMapping(value = "/user/add", method = {RequestMethod.GET})
+    @RequestMapping(value = "/message/add", method = {RequestMethod.GET})
     public String toAdd(Model model) {
         
         if(!model.containsAttribute(Constants.COMMAND)) {
-            model.addAttribute(Constants.COMMAND, new User());
+            model.addAttribute(Constants.COMMAND, new Messages());
         }
         setCommonData(model);
-        return "user/add";
+        return "message/add";
     }
     
-    @RequestMapping(value = "/user/{id}/update", method = {RequestMethod.GET})
-    public String toUpdate(Model model, @PathVariable Integer id) {
+    @RequestMapping(value = "/message/{id}/update", method = {RequestMethod.GET})
+    public String toUpdate(Model model, @PathVariable Long id) {
         if(!model.containsAttribute(Constants.COMMAND)) {
-            model.addAttribute(Constants.COMMAND,  userService.get(id));
+            model.addAttribute(Constants.COMMAND,  messageService.get(id));
         }
         setCommonData(model);
-        return "user/update";
+        return "message/update";
     }
     
-    @RequestMapping(value = "/user/{id}/delete", method = {RequestMethod.GET})
+    @RequestMapping(value = "/message/{id}/delete", method = {RequestMethod.GET})
     public String toDelete(@PathVariable Integer  id) {
-        return "user/delete";
+        return "message/delete";
     }
 
 
-    @RequestMapping(value = "/user/add", method = {RequestMethod.POST})
-    public String add(Model model, @ModelAttribute("command") @Valid User command, BindingResult result) {
+    @RequestMapping(value = "/message/add", method = {RequestMethod.POST})
+    public String add(Model model, @ModelAttribute("command") @Valid Messages command, BindingResult result) {
         
         //如果有验证错误 返回到form页面
         if(result.hasErrors()) {
             model.addAttribute(Constants.COMMAND, command);
             return toAdd(model);
         }
-         userService.save(command);
-        return "redirect:/user/success";
+         messageService.save(command);
+        return "redirect:/message/success";
     }
     
-    @RequestMapping(value = "/user/{id}/update", method = {RequestMethod.PUT})
-    public String update(Model model, @ModelAttribute("command") @Valid User command, BindingResult result) {
+    @RequestMapping(value = "/message/{id}/update", method = {RequestMethod.PUT})
+    public String update(Model model, @ModelAttribute("command") @Valid Messages command, BindingResult result) {
         if(result.hasErrors()) {
             model.addAttribute(Constants.COMMAND, command);
             return toUpdate(model, command.getId());
         }
-        userService.update(command);
-        return "redirect:/user/success";
+        messageService.update(command);
+        return "redirect:/message/success";
     }
     
-    @RequestMapping(value = "/user/{id}/delete", method = {RequestMethod.DELETE})
-    public String delete(@PathVariable Integer id) {
-        userService.delete(id);
-        return "redirect:/user/success";
+    @RequestMapping(value = "/message/{id}/delete", method = {RequestMethod.DELETE})
+    public String delete(@PathVariable Long id) {
+        messageService.delete(id);
+        return "redirect:/message/success";
     }
     
-    @RequestMapping(value = "/user/success", method = {RequestMethod.GET})
+    @RequestMapping(value = "/message/success", method = {RequestMethod.GET})
     public String success() {
-        return "user/success";
+        return "message/success";
     }
 
     @InitBinder

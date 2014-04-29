@@ -13,4 +13,6 @@ public interface UserDao extends IBaseDao<User, Integer> {
 
     int countQuery(UserQueryModel command);
 
+	User findByName(String username);
+
 }
