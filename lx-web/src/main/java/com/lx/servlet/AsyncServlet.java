@@ -13,6 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(name = "AsyncServlet", urlPatterns = { "/AsyncServlet" }, asyncSupported = true)
 public class AsyncServlet extends HttpServlet {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2110918387083530819L;
+
 	public void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("GBK");

@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.lx.common.dao.IBaseDao;
 import com.lx.web.model.Resource;
-import com.lx.web.model.User;
 
 
 public interface ResourceDao extends IBaseDao<Resource, Integer> {

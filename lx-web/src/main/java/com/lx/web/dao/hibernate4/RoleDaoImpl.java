@@ -7,8 +7,6 @@ import org.springframework.stereotype.Repository;
 import com.lx.common.dao.hibernate4.BaseHibernateDao;
 import com.lx.web.dao.RoleDao;
 import com.lx.web.model.Role;
-import com.lx.web.model.User;
-import com.lx.web.model.UserQueryModel;
 
 /**
  * User: Zhang Kaitao

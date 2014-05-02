@@ -12,8 +12,6 @@ import com.lx.common.pagination.PageUtil;
 import com.lx.common.service.impl.BaseService;
 import com.lx.web.dao.MessageDao;
 import com.lx.web.model.Messages;
-import com.lx.web.model.User;
-import com.lx.web.model.UserQueryModel;
 import com.lx.web.service.MessageService;
 
 @Service("messageService")
