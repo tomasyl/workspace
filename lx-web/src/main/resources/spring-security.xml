@@ -38,12 +38,13 @@
 	<authentication-manager alias="lxAuthenticationManager">
 		<authentication-provider user-service-ref="lxUserDetailServiceImpl" />
 	</authentication-manager>
+	
 	<beans:bean id="lxAccessDecisionManager" class="com.lx.security.LXAccessDecisionManager"></beans:bean>
-	<beans:bean id="lxSecurityMetadataSource" class="com.lx.security.LXSecurityMetadataSource">
-		
-		<beans:constructor-arg name="resourceDao" ref="resourceDao"></beans:constructor-arg>
-		<!-- <beans:constructor-arg name="sessionFactory" ref="sessionFactory"></beans:constructor-arg> -->
+	
+	<beans:bean id="lxSecurityMetadataSource" class="com.lx.security.LXSecurityMetadataSource">		
+		<beans:constructor-arg name="resourceDao" ref="resourceDao"></beans:constructor-arg>		
 	</beans:bean>
+	
 	<beans:bean id="lxUserDetailServiceImpl" class="com.lx.security.LXUserDetailServiceImpl">
 		<beans:property name="userDao" ref="userDao"></beans:property>
 	</beans:bean>
